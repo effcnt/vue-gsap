@@ -8,12 +8,17 @@ import { GsapEffect } from './types'
 export type { ScrollTriggerVars, GsapEffect, TweenVars } from './types'
 export * from './directives'
 export * from './utils'
+import builtinEffects from './effects'
+
+gsap.registerPlugin(CustomEase)
+gsap.registerPlugin(ScrollTrigger)
+
+builtinEffects.forEach((effect) => {
+  gsap.registerEffect(effect)
+})
 
 // pass in any custom GSAP effects you want to register
 const install: Plugin<GsapEffect[]> = (app, ...effects) => {
-  gsap.registerPlugin(CustomEase)
-  gsap.registerPlugin(ScrollTrigger)
-
   effects.forEach((effect) => {
     gsap.registerEffect(effect)
   })
